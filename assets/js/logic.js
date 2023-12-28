@@ -15,17 +15,17 @@ var hrule=document.createElement("hr");
 feedbackDiv.appendChild(hrule)
 feedbackDiv.appendChild(message);
 var finalscore=document.getElementById("final-score");
+var initials=document.getElementById("initials");
 var questionIndex = 0;
  var score=0;
-
+var highScores=[];
 var timeLeft = 60;
 // function used to displaythe question and its responses
 function showQuestions() {
    
-  console.log("the next "+questionIndex);
- 
+   
   questionTitle.textContent = quiz[questionIndex].question; //"add question here";
-  console.log("letngh  "+quiz[questionIndex].answers.length);
+
   for (let i = 0; i < quiz[questionIndex].answers.length; i++) {
    
     var btn = document.createElement("button");
@@ -88,13 +88,13 @@ timeLeft-=10;
   }
  feedbackDiv.removeAttribute("class", "hide");
   displayNextQuestion();
-  console.log("scores "+score)
+  
 }
 //function to move to the next question
 function displayNextQuestion(){
     if(questionIndex!=quiz.length-1){
         questionIndex++;
-console.log("from showq");
+
 questionOptionsDiv.innerHTML='';
 showQuestions();
 
@@ -110,7 +110,21 @@ function gameOver(){
 }
 saveScores=function(event){
 const element =event.target;
+var user='';
 event.preventDefault();
+if(initials.value.trim()===""){
+ return   alert("Please Enter your initials")
+}
+if(initials.value.trim().length>3)
+{initials.focus();
+    return alert("you can only enter 3 characters");
+}
+
+highScores=JSON.parse(localStorage.getItem("scores"))
+highScores.push(initials.value,score);
+localStorage.setItem("scores",JSON.stringify(highScores));
+//localStorage.setItem("user",document.getElementById('initials').textContent);
+//localStorage.setItem("score",score)
 
 }
 
