@@ -10,23 +10,31 @@ var feedbackDiv = document.getElementById("feedback");
 
 var endScreenDiv = document.getElementById("end-screen");
 var message = document.createElement("h4");
+var hrule=document.createElement("hr");
+feedbackDiv.appendChild(hrule)
 feedbackDiv.appendChild(message);
-var Index = 7;
-var currentQuestion = questions[Index];
+var questionIndex = 0;
+ 
 
 var timeLeft = 60;
-// function used to 
+// function used to displaythe question and its responses
 function showQuestions() {
-  //console.log(currentQuestion.question.toString());
-  questionTitle.textContent = currentQuestion.question; //"add question here";
-  console.log(questionOptionsDiv.length);
+   
+  console.log("the next "+questionIndex);
+ 
+  questionTitle.textContent = quiz[questionIndex].question; //"add question here";
+  console.log("letngh  "+quiz.length);
   for (let i = 0; i < 4; i++) {
+   
     var btn = document.createElement("button");
-    btn.textContent = currentQuestion.answers[i];
+    btn.textContent = quiz[questionIndex].answers[i];
     console.log("btnelement" + btn);
     btn.setAttribute("id", i);
     btn.addEventListener("click", btnListener);
     questionOptionsDiv.appendChild(btn);
+    console.log("no nodes")
+
+
   }
 }
 // function to start the quiz when the start button is clicked
@@ -53,13 +61,27 @@ function timerStart() {
 function btnListener(event) {
   console.log(event.target.id);
 
-  if (currentQuestion.answer == event.target.id) {
+  if (quiz[questionIndex].answer == event.target.id) {
    // alert("welldone");
 
     message.textContent = "Correct!";
   } else {
     message.textContent = "Incorrect !";
+
   }
   feedbackDiv.removeAttribute("class", "hide");
+  displayNextQuestion();
 }
+//function to move to the next question
+function displayNextQuestion(){
+    if(questionIndex<quiz.length){
+        questionIndex++;
+console.log("from showq");
+
+questionOptionsDiv.innerHTML='';
+showQuestions();
+//feedbackDiv.setAttribute("class", "hide");
+    }
+}
+
 startBtn.addEventListener("click", startGame);
