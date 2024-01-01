@@ -6,7 +6,7 @@ retrieveScores();
 function retrieveScores(){
 highScores=JSON.parse(localStorage.getItem("scores"));
 //if(highScores){
-    console.log(highScores.length)
+    //console.log(highScores.length)
     for (let i = 0; i< highScores.length; i++)
     {
 const element =highScores[i].init +"   "+highScores[i].score;
@@ -23,6 +23,7 @@ highscores.appendChild(li1)
 //reset the scores in localstorage
 function resetScores(){
 localStorage.removeItem("scores");
+highscores.setAttribute("class","hide")
 }
 
 

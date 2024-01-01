@@ -107,9 +107,11 @@ saveScores = function (event) {
 		return alert(  "You can only enter 3 characters");
 	}
 	
+	if (localStorage.getItem("scores") != null) {
+
 	highScores = JSON.parse(localStorage.getItem("scores"));
-	
-    user.init=txtinput.value;
+}
+    user.init=txtinput.value.trim().toUpperCase();
     user.score=score;
 	highScores.push(user);
 	localStorage.setItem("scores", JSON.stringify(highScores));
