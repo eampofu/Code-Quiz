@@ -20,6 +20,7 @@ var questionIndex = 0;
 var score = 0;
 var highScores = [];
 var timeLeft = 60;
+var countdown;
 // function used to displaythe question and its responses
 function showQuestions() {
 	questionTitle.textContent = quiz[questionIndex].question; //"add question here";
@@ -40,11 +41,12 @@ function startGame() {
 	showQuestions();
 	timerStart();
 }
+
 //function to start the timer countdown
 function timerStart() {
-	var countdown = setInterval(function () {
+	 countdown = setInterval(function () {
 		timeLeft--;
-		console.log("index " + questionIndex);
+		
 		clock.textContent = timeLeft;
 		if (timeLeft === 0 || timeLeft < 0 || questionIndex === quiz.length) {
 			gameOver();
@@ -81,11 +83,15 @@ function btnListener(event) {
 }
 //function to move to the next question
 function displayNextQuestion() {
-	if (questionIndex != quiz.length ) {
+	if (questionIndex != quiz.length -1) {
 		questionIndex++;
 
 		questionOptionsDiv.innerHTML = "";
 		showQuestions();
+	}
+	else{
+		gameOver();
+		clearInterval(countdown);
 	}
 }
 //function to end the game

@@ -5,8 +5,8 @@ var  li=document.createElement("li");
 retrieveScores();
 function retrieveScores(){
 highScores=JSON.parse(localStorage.getItem("scores"));
-//if(highScores){
-    //console.log(highScores.length)
+if(highScores){
+   
     for (let i = 0; i< highScores.length; i++)
     {
 const element =highScores[i].init +"   "+highScores[i].score;
@@ -14,7 +14,7 @@ var li1 =document.createElement("li")
  
 li1.textContent=element;
 highscores.appendChild(li1)
- // }
+  }
    
     }
 
