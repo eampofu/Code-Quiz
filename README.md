@@ -19,3 +19,4 @@ questions for the quiz are taken from https://www.tutorialspoint.com/javascript/
 ![Alt text](./assets/images/image.png)
 ![Alt text](./assets/images/image-1.png)
 # Licence
+MIT. Please see original GitHub repository.
